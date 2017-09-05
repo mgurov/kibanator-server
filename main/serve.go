@@ -18,7 +18,7 @@ func main() {
 	}
 	rProxy := httputil.NewSingleHostReverseProxy(apiURL)
 	http.Handle("/api/", http.StripPrefix("/api", rProxy))
-	http.Handle("/ui/", http.StripPrefix("/ui", http.FileServer(http.Dir("./ui"))))
+	http.Handle("/ui/", http.StripPrefix("/ui", http.FileServer(assetFS())))
 	http.Handle("/", http.RedirectHandler("/ui/", http.StatusMovedPermanently))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

@@ -1,1 +1,3 @@
 ui
+vendor/*
+main/bindata_assetfs.go
