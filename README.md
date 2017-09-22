@@ -4,7 +4,7 @@ Proxying server to serve [kibanator](https://github.com/mgurov/kibanator)
 
 ### Build 
 
-At the kibanator folder: `REACT_APP_API_PATH="/api" yarn build`
+At the kibanator folder: `REACT_APP_API_PATH="/api" REACT_APP_VERSION=$(git rev-parse --short HEAD) yarn build`
 
 ````bash
 mv <kibanator>/build/ ./ui

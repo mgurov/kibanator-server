@@ -10,6 +10,7 @@ import (
 
 func main() {
 	apiURLStr := flag.String("api", "http://localhost:9200", "the url to proxy API from")
+	portStr := flag.String("port", "8080", "port")
 	flag.Parse()
 
 	apiURL, err := url.Parse(*apiURLStr)
@@ -20,5 +21,5 @@ func main() {
 	http.Handle("/api/", http.StripPrefix("/api", rProxy))
 	http.Handle("/ui/", http.StripPrefix("/ui", http.FileServer(assetFS())))
 	http.Handle("/", http.RedirectHandler("/ui/", http.StatusMovedPermanently))
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":" + *portStr, nil))
 }
