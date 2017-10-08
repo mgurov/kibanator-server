@@ -24,8 +24,8 @@ func main() {
 		r.Header.Set("Kibanator-UI-Version", uiVersion)
 		return nil
 	}
-	http.Handle("/api/", http.StripPrefix("/api", rProxy))
+	http.Handle("/", rProxy)
 	http.Handle("/ui/", http.StripPrefix("/ui", http.FileServer(assetFS())))
-	http.Handle("/", http.RedirectHandler("/ui/", http.StatusMovedPermanently))
+	//http.Handle("/", http.RedirectHandler("/ui/", http.StatusMovedPermanently))
 	log.Fatal(http.ListenAndServe(":" + *portStr, nil))
 }
